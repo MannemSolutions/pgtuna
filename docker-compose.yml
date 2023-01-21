@@ -1,0 +1,19 @@
+version: '3'
+services:
+  builder:
+    image: rust
+    command:
+    -  bash
+    - -c
+    - 'while /bin/true; do sleep 10; done'
+    volumes:
+    - ./:/host
+  postgres:
+    image: postgres
+    #command: ['postgres', '-c', 'config_file=/etc/postgresql/postgresql.conf']
+    environment:
+      POSTGRES_PASSWORD: pgtuna
+    ports:
+    - '5432:5432'
+    volumes:
+    - ./:/host
